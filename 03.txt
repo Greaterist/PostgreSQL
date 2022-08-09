@@ -1,0 +1,144 @@
+postgres@raspberrypi:~$ createdb vk_staging
+postgres@raspberrypi:~$ psql vk_staging < vk.dump.sql
+SET
+SET
+SET
+SET
+SET
+ set_config
+------------
+
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+COPY 100
+COPY 100
+COPY 100
+COPY 100
+COPY 4
+COPY 100
+COPY 100
+COPY 100
+COPY 100
+ setval
+--------
+    341
+(1 row)
+
+ setval
+--------
+    100
+(1 row)
+
+ setval
+--------
+    100
+(1 row)
+
+ setval
+--------
+      1
+(1 row)
+
+ setval
+--------
+    100
+(1 row)
+
+ setval
+--------
+    115
+(1 row)
+
+ setval
+--------
+    100
+(1 row)
+
+ setval
+--------
+    235
+(1 row)
+
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+postgres@raspberrypi:~$ psql vk_staging
+psql (13.7 (Raspbian 13.7-0+deb11u1))
+Type "help" for help.
+
+vk_staging=# SELECT * FROM users LIMIT 3;
+ id | first_name | last_name |              email               |  phone   | main_photo_id |     created_at
+----+------------+-----------+----------------------------------+----------+---------------+---------------------
+  1 | Erin       | Thomas    | velit.eu.sem@icloud.com          | 296-9816 |            58 | 2023-06-19 00:00:00
+  2 | Simone     | Shannon   | quisque.purus.sapien@icloud.couk | 269-7584 |            59 | 2021-10-30 00:00:00
+  3 | Baxter     | Collier   | ipsum.nunc.id@protonmail.edu     | 632-5791 |            30 | 2021-07-05 00:00:00
+(3 rows)
+
