@@ -4,3 +4,4 @@ CREATE TABLE following (
   followed_to__id INT NOT NULL,
   is_user BOOLEAN NOT NULL,
   followed_at TIMESTAMP NOT NULL,
+);
