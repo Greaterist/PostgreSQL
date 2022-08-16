@@ -1,0 +1,10 @@
+ SELECT
+	video.id,
+	(SELECT users.first_name FROM users WHERE users.id = video.owner_id),
+	(SELECT users.last_name FROM users WHERE users.id = video.owner_id),
+	(SELECT (SELECT photo.url as photo_url FROM photo WHERE users.main_photo_id = photo.id) FROM users WHERE users.id = video.owner_id),
+	video.url,
+	video.size
+FROM video
+ORDER BY video.size DESC
+LIMIT 10
