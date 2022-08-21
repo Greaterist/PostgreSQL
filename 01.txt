@@ -1,0 +1,71 @@
+postgres=# CREATE ROLE analyst;
+CREATE ROLE
+postgres=# CREATE ROLE tester;
+CREATE ROLE
+postgres=# CREATE ROLE serovf LOGIN;
+CREATE ROLE
+postgres=# CREATE ROLE belovr LOGIN;
+CREATE ROLE
+postgres=# GRANT analyst TO serovf;
+GRANT ROLE
+postgres=# GRANT tester TO belovr;
+GRANT ROLE
+postgres=# ALTER ROLE serovf WITH PASSWORD '123';
+ALTER ROLE
+postgres=# ALTER ROLE belovr WITH PASSWORD '123';
+ALTER ROLE
+postgres=# \c vk
+You are now connected to database "vk" as user "postgres".
+vk=# GRANT SELECT ON ALL TABLES IN SCHEMA public TO analyst;
+GRANT
+vk=# GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO analyst;
+GRANT
+vk=# GRANT ALL ON ALL TABLES IN SCHEMA public TO tester;
+GRANT
+vk=# GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO tester;
+GRANT
+vk=# exit
+postgres@raspberrypi:/home/pi$ psql  -U serovf -d vk -h 127.0.0.1 -W
+Password:
+psql (13.7 (Raspbian 13.7-0+deb11u1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+vk=> SELECT * FROM friendship_statuses;
+ id |   name
+----+----------
+  1 | sending
+  2 | send
+  3 | accepted
+  4 | declined
+(4 rows)
+vk=> INSERT INTO friendship_statuses (name) VALUES ('test');
+ERROR:  permission denied for table friendship_statuses
+vk=> exit
+postgres@raspberrypi:/home/pi$ psql  -U belovr -d vk -h 127.0.0.1 -W
+Password:
+psql (13.7 (Raspbian 13.7-0+deb11u1))
+SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
+Type "help" for help.
+
+vk=> SELECT * FROM friendship_statuses;
+ id |   name
+----+----------
+  1 | sending
+  2 | send
+  3 | accepted
+  4 | declined
+(4 rows)
+
+vk=> INSERT INTO friendship_statuses(name) VALUES ('test');
+INSERT 0 1
+vk=> SELECT * FROM friendship_statuses;
+ id |   name
+----+----------
+  1 | sending
+  2 | send
+  3 | accepted
+  4 | declined
+  5 | test
+(5 rows)
+
