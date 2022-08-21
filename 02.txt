@@ -1,0 +1,21 @@
+postgres=# CREATE EXTENSION "insert_username";
+CREATE EXTENSION
+postgres=# SELECT * FROM pg_extension;
+-[ RECORD 1 ]--+----------------
+oid            | 13431
+extname        | plpgsql
+extowner       | 10
+extnamespace   | 11
+extrelocatable | f
+extversion     | 1.0
+extconfig      |
+extcondition   |
+-[ RECORD 2 ]--+----------------
+oid            | 41394
+extname        | insert_username
+extowner       | 10
+extnamespace   | 2200
+extrelocatable | t
+extversion     | 1.0
+extconfig      |
+extcondition   |

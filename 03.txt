@@ -1,0 +1,27 @@
+CREATE TABLE profiles (
+  user_id INT,
+  main_photo_id INT,
+  user_contacts CONTACTS,
+  created_at TIMESTAMP
+);
+
+ALTER TABLE profiles
+    ADD CONSTRAINT profiles_user_id_fk
+    FOREIGN KEY (user_id)
+    REFERENCES users(id);
+
+ALTER TABLE profiles
+    ADD CONSTRAINT profiles_main_photo_id_fk
+    FOREIGN KEY (main_photo_id)
+    REFERENCES photo (id);
+
+
+INSERT INTO profiles (user_id, main_photo_id, user_contacts, created_at)
+    SELECT users.id, users.main_photo_id, users.user_contacts, users.created_at
+        FROM users;
+
+
+ALTER TABLE users
+    DROP COLUMN main_photo_id,
+    DROP COLUMN user_contacts,
+    DROP COLUMN created_at;
