@@ -1,0 +1,10 @@
+CREATE OR REPLACE PROCEDURE photo_owner_check(
+  checked_owner INTEGER)
+LANGUAGE PLPGSQL AS
+$$
+BEGIN
+UPDATE profiles
+    SET main_photo_id=NULL
+    WHERE user_id = checked_owner AND (SELECT owner_id FROM photo WHERE main_photo_id = photo.id) != checked_owner;
+END;
+$$
