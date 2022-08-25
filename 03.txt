@@ -1,0 +1,19 @@
+CREATE OR REPLACE FUNCTION update_profiles_photo_trigger()
+RETURNS TRIGGER AS
+$$
+DECLARE is_owner BOOLEAN;
+BEGIN
+  is_owner := EXISTS(SELECT * FROM photo WHERE photo.id = NEW.main_photo_id AND owner_id = NEW.user_id);
+  IF is_owner THEN
+    RETURN NEW;
+  END IF;
+
+END
+$$
+LANGUAGE PLPGSQL;
+
+
+
+CREATE TRIGGER check_profiles_on_update BEFORE UPDATE ON profiles
+  FOR EACH ROW
+  EXECUTE FUNCTION update_profiles_photo_trigger();

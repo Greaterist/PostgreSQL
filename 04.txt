@@ -1,0 +1,9 @@
+CREATE VIEW video_with_users AS
+    SELECT * FROM video
+    LEFT JOIN profiles
+    ON video.owner_id = profiles.user_id;
+
+CREATE VIEW video_10_newest AS
+    SELECT * FROM video
+    ORDER BY uploaded_at DESC
+    LIMIT 10;
