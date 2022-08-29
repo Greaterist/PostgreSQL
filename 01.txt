@@ -1,0 +1,49 @@
+BEGIN;
+DELETE FROM users
+JOIN friendship
+    ON users.id = friendship.requested_by_user_id
+    JOIN friendship_statuses
+        ON friendship.status_id = friendship_statuses.id
+WHERE friendship_statuses.id!=3;
+
+DELETE FROM friendship
+LEFT JOIN users
+    ON friendship.requested_by_user_id = users.id
+WHERE users.id IS NULL;
+
+DELETE FROM messages
+LEFT JOIN users
+    ON messages.from_user_id = users.id
+WHERE users.id IS NULL;
+
+DELETE FROM messages
+LEFT JOIN users
+    ON messages.to_user_id = users.id
+WHERE users.id IS NULL;
+
+DELETE FROM profiles
+LEFT JOIN users
+    ON profiles.user_id = users.id
+WHERE users.id IS NULL;
+
+DELETE FROM video
+LEFT JOIN users
+    ON video.owner_id = users.id
+WHERE users.id IS NULL;
+
+DELETE FROM photo
+LEFT JOIN users
+    ON photo.owner_id = users.id
+WHERE users.id IS NULL;
+
+DELETE FROM following
+LEFT JOIN users
+    ON following.follower_id = users.id
+WHERE users.id IS NULL;
+
+DELETE FROM following
+LEFT JOIN users
+    ON following.followed_to_id = users.id
+WHERE users.id IS NULL AND following.is_user=TRUE;
+
+COMMIT;
